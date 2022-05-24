@@ -1,0 +1,14 @@
+{
+    "name": "Meg Griffin",
+    "description": "Nobody likes me!",
+    "image": "ipfs://QmadvrS6BqgSoGEyq8JEsurJ5f6maqDkp1qUqMZuLuX2Th/4.jpg",
+    "attributes": [{
+            "trait_type": "cuteness",
+            "value": 25
+        },
+        {
+            "trait_type": "head-size",
+            "value": 40
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Brain Griffin",
+    "description": "Stewie is my best friend",
+    "image": "ipfs://QmadvrS6BqgSoGEyq8JEsurJ5f6maqDkp1qUqMZuLuX2Th/3.jpg",
+    "attributes": [{
+            "trait_type": "cuteness",
+            "value": 70
+        },
+        {
+            "trait_type": "head-size",
+            "value": 20
+        }
+    ]
+}

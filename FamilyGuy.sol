@@ -26,43 +26,6 @@ contract FamilyGuy is ERC721, Ownable {
         whiteListedWallets[msg.sender] = true;
     }
 
-    function setBaseURI(string memory _baseURI) public onlyOwner {
-        baseURI = _baseURI;
-    }
-
-    function setPreviewURI(string memory _previewURI) public onlyOwner {
-        previewURI = _previewURI;
-    }
-
-    function setMaxSupply(uint256 _maxSupply) public onlyOwner {
-        require(
-            totalSupply <= _maxSupply,
-            "max supply can not be less than the total supply"
-        );
-        maxSupply = _maxSupply;
-    }
-
-    function setMaxMintPerWallet(uint256 _maxMint) external onlyOwner {
-        require(_maxMint < maxSupply, "max mint can not exceed max supply");
-        maxMintPerWallet = _maxMint;
-    }
-
-    function togglePreMint() external onlyOwner {
-        isPreMint = !isPreMint;
-    }
-
-    function togglePublicMint() external onlyOwner {
-        isPublicMint = !isPublicMint;
-    }
-
-    function toogleRevealed() external onlyOwner {
-        isRevealed = true;
-    }
-
-    function addAddress(address _address) external onlyOwner {
-        whiteListedWallets[_address] = true;
-    }
-
     modifier soldOut() {
         require(totalSupply < maxSupply, "NFTs are sold out");
         _;
@@ -76,8 +39,6 @@ contract FamilyGuy is ERC721, Ownable {
         _;
     }
 
-    // check total supply is less than max supply
-    // address has reached max mint
     function preMint() external soldOut mintExceeded {
         require(isPreMint, "Pre miniting has not started");
         require(whiteListedWallets[msg.sender], "Address is not whitelisted");
@@ -115,5 +76,43 @@ contract FamilyGuy is ERC721, Ownable {
             bytes(baseURI).length > 0
                 ? string(abi.encodePacked(baseURI, tokenId.toString(), ".json"))
                 : "";
+    }
+
+    // only owner
+    function setBaseURI(string memory _baseURI) public onlyOwner {
+        baseURI = _baseURI;
+    }
+
+    function setPreviewURI(string memory _previewURI) public onlyOwner {
+        previewURI = _previewURI;
+    }
+
+    function setMaxSupply(uint256 _maxSupply) public onlyOwner {
+        require(
+            totalSupply <= _maxSupply,
+            "max supply can not be less than the total supply"
+        );
+        maxSupply = _maxSupply;
+    }
+
+    function setMaxMintPerWallet(uint256 _maxMint) external onlyOwner {
+        require(_maxMint < maxSupply, "max mint can not exceed max supply");
+        maxMintPerWallet = _maxMint;
+    }
+
+    function togglePreMint() external onlyOwner {
+        isPreMint = !isPreMint;
+    }
+
+    function togglePublicMint() external onlyOwner {
+        isPublicMint = !isPublicMint;
+    }
+
+    function toogleRevealed() external onlyOwner {
+        isRevealed = true;
+    }
+
+    function addAddress(address _address) external onlyOwner {
+        whiteListedWallets[_address] = true;
     }
 }
